@@ -22,8 +22,10 @@ class UserList extends StatelessWidget {
           builder: (BuildContext context) {
             return IconButton(
               icon: const Icon(Icons.menu),
+              // onPressed: () {
+              // Scaffold.of(context).openDrawer();
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                Navigator.pop(context);
               },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
@@ -34,9 +36,14 @@ class UserList extends StatelessWidget {
             icon: const Icon(Icons.account_circle_outlined),
             tooltip: 'Account',
             onPressed: () {
+              Navigator.pop(context);
+            },
+            //child: const Text('Go back!'),
+
+            /* onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Nada aqui por enquanto')));
-            },
+            },*/
           ),
         ],
       ),
