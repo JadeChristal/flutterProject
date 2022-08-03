@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserList extends StatelessWidget {
@@ -18,19 +19,6 @@ class UserList extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              // onPressed: () {
-              // Scaffold.of(context).openDrawer();
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.account_circle_outlined),
@@ -47,6 +35,41 @@ class UserList extends StatelessWidget {
           ),
         ],
       ),
+      drawer: drawerMenu(context),
+      body: _list,
     );
   }
 }
+
+Widget _list = Center(
+  child: Container(
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(
+          color: const Color(0xffDADADA),
+          width: 1,
+        )),
+    child: ListView(
+      children: <Widget>[
+        ListTile(
+          leading: Image.asset('images/Ellipse 2.png'),
+          title: Text(
+            'Marielle da Silvassauro',
+            style: GoogleFonts.inter(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          subtitle: Text(
+            '@Marielle2022',
+            style: GoogleFonts.inter(
+              color: const Color(0xFFA8A8A8),
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
+      ],
+    ),
+  ),
+);
