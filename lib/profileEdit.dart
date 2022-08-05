@@ -19,7 +19,9 @@ class ProfileEdit extends StatelessWidget {
         ],
         backgroundColor: const Color(0xFF2C2263),
       ),
-      drawer: drawerMenu(context),
+      drawer: drawerMenu(
+        context,
+      ),
     );
   }
 }
