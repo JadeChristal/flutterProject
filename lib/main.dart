@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/profile.dart';
+import 'package:flutter_project/profileEdit.dart';
 import 'package:flutter_project/userlist.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -39,7 +40,6 @@ Widget drawerMenu(BuildContext context) {
             style:
                 GoogleFonts.roboto(fontSize: 14, fontWeight: FontWeight.w400),
           ),
-          //minVerticalPadding: 20,
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Profile()));
@@ -55,7 +55,6 @@ Widget drawerMenu(BuildContext context) {
             style:
                 GoogleFonts.roboto(fontSize: 14, fontWeight: FontWeight.w400),
           ),
-          //minVerticalPadding: 20,
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const UserList()));
