@@ -2,64 +2,90 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+List<Map> list = [
+  {
+    'image': 'images/Ellipse 2.png',
+    'name': 'Marielle da Silvassauro',
+    'email': '@Marielle2022'
+  },
+  {'image': 'images/Ellipse 3.png', 'name': 'Maria Eduarda', 'email': '@Madu'},
+  {
+    'image': 'images/Ellipse 4.png',
+    'name': 'Giovanna Melo',
+    'email': "@Giomello"
+  },
+  {
+    'image': 'images/Ellipse 5.png',
+    'name': 'João Pedro Freitas',
+    'email': '@jpedro'
+  },
+  {
+    'image': 'images/Ellipse 6.png',
+    'name': 'Cristiane Siqueira',
+    'email': '@Cris_siqueira'
+  },
+  {
+    'image': 'images/Ellipse 7.png',
+    'name': 'André Fernandes',
+    'email': '@De2532'
+  },
+  {
+    'image': 'images/Ellipse 8.png',
+    'name': 'Alissa Marques',
+    'email': '@Alimarques'
+  },
+];
+
 class UserList extends StatelessWidget {
   const UserList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF2C2263),
-        toolbarHeight: 50,
-        centerTitle: true,
-        title: Text(
-          'Lista de Usuários',
-          style: GoogleFonts.roboto(
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF2C2263),
+          toolbarHeight: 50,
+          centerTitle: true,
+          title: Text(
+            'Lista de Usuários',
+            style: GoogleFonts.roboto(
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+            ),
           ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.account_circle_outlined),
+              tooltip: 'Account',
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Nada aqui por enquanto')));
+              },
+            ),
+          ],
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.account_circle_outlined),
-            tooltip: 'Account',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Nada aqui por enquanto')));
-            },
+        drawer: drawerMenu(context),
+        body: Container(
+          margin: const EdgeInsets.only(top: 56),
+          child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            children: [_userList],
           ),
-        ],
-      ),
-      drawer: drawerMenu(context),
-      body: ListView(
-        padding: const EdgeInsets.only(
-          top: 50,
-          bottom: 106,
-        ),
-        children: [_userList],
-      ),
-    );
+        ));
   }
 }
 
 Widget _userList = Column(
   mainAxisAlignment: MainAxisAlignment.center,
-  children: [
-    _list('images/Ellipse 2.png', 'Marielle da Silvassauro', '@Marielle2022'),
-    _list('images/Ellipse 3.png', 'Maria Eduarda', '@Madu'),
-    _list('images/Ellipse 4.png', 'Giovanna Melo', "@Giomello"),
-    _list('images/Ellipse 5.png', 'João Pedro Freitas', '@jpedro'),
-    _list('images/Ellipse 6.png', 'Cristiane Siqueira', '@Cris_siqueira'),
-    _list('images/Ellipse 7.png', 'André Fernandes', '@De2532'),
-    _list('images/Ellipse 8.png', 'Alissa Marques', '@Alimarques'),
-  ],
+  children: list
+      .map((value) => _list(value['image'], value['name'], value['email']))
+      .toList(),
 );
 
 Container _list(String userPhoto, String userName, String userNickname) {
   return Container(
-    margin: EdgeInsets.only(bottom: 24),
+    margin: const EdgeInsets.only(bottom: 24),
     alignment: Alignment.center,
-    width: 309,
     height: 60,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -68,7 +94,6 @@ Container _list(String userPhoto, String userName, String userNickname) {
           width: 1,
         )),
     child: ListTile(
-      //contentPadding: EdgeInsets.symmetric(horizontal: 40),
       minLeadingWidth: 23,
       leading: Image.asset(userPhoto),
       title: Text(
